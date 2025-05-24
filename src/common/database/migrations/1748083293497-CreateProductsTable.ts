@@ -23,6 +23,10 @@ export class CreateProductsTable1748083293497 implements MigrationInterface {
                         type: 'text',
                     },
                     {
+                        name: 'image',
+                        type: 'text',
+                    },
+                    {
                         name: 'price',
                         type: 'decimal',
                         precision: 10,
