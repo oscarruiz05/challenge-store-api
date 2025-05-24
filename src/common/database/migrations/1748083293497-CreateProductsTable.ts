@@ -45,9 +45,11 @@ export class CreateProductsTable1748083293497 implements MigrationInterface {
                         name: 'updated_at',
                         type: 'timestamp',
                         default: 'now()',
+                        onUpdate: 'CURRENT_TIMESTAMP',
                     },
                 ],
             }),
+            true
         );
     }
 
