@@ -14,11 +14,11 @@ export class CreateProductDto implements CreateProductCommand {
   name: string;
 
   @IsString()
-  @IsOptional()
+  @IsNotEmpty()
   description: string;
 
   @IsString()
-  @IsOptional()
+  @IsNotEmpty()
   image: string;
 
   @IsNumber()
