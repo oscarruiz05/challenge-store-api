@@ -1,3 +1,4 @@
+import { TransactionOrmEntity } from './../../app/transactions/infrastructure/persistence/entities/transaction.orm.entity';
 import * as dotenv from 'dotenv';
 import { ProductOrmEntity } from '../../app/products/infrastructure/persistence/entities/product.orm.entity';
 import { DataSource } from 'typeorm';
@@ -12,7 +13,7 @@ export const AppDataSource = new DataSource({
   username: process.env.DB_USERNAME || 'postgres',
   password: process.env.DB_PASSWORD || 'postgres',
   database: process.env.DB_DATABASE || 'store_challenge',
-  entities: [ProductOrmEntity, CustomerOrmEntity],
+  entities: [ProductOrmEntity, CustomerOrmEntity, TransactionOrmEntity],
   synchronize: false,
   logging: true,
   migrationsRun: false,
