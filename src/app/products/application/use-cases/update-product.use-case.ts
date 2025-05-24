@@ -6,6 +6,7 @@ export interface UpdateProductCommand {
   id: string;
   name?: string;
   description?: string;
+  image?: string;
   price?: number;
   stock?: number;
 }
@@ -27,6 +28,7 @@ export class UpdateProductUseCase {
     existingProduct.name = command.name ?? existingProduct.name;
     existingProduct.description =
       command.description ?? existingProduct.description;
+    existingProduct.image = command.image ?? existingProduct.image;
     existingProduct.price = command.price ?? existingProduct.price;
     existingProduct.stock = command.stock ?? existingProduct.stock;
 
