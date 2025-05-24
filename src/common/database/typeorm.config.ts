@@ -1,7 +1,7 @@
-import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
 import { ProductOrmEntity } from '../../app/products/infrastructure/persistence/entities/product.orm.entity';
 import { DataSource } from 'typeorm';
+import { CustomerOrmEntity } from '../../app/customers/infrastructure/persistence/entities/customer.orm.entity';
 
 dotenv.config();
 
@@ -12,10 +12,10 @@ export const AppDataSource = new DataSource({
   username: process.env.DB_USERNAME || 'postgres',
   password: process.env.DB_PASSWORD || 'postgres',
   database: process.env.DB_DATABASE || 'store_challenge',
-  entities: [ProductOrmEntity],
+  entities: [ProductOrmEntity, CustomerOrmEntity],
   synchronize: false,
   logging: true,
-  migrationsRun: true,
+  migrationsRun: false,
   migrationsTableName: 'migrations',
   migrations: [__dirname + '/migrations/*.{ts,js}'],
 });
