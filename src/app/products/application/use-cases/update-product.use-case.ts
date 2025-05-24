@@ -1,6 +1,6 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
-import { ProductRepository } from '../../domain/repositories/product.repository';
-import { Product } from '../../domain/entities/product.entity';
+import { ProductRepository } from '../../domain/repositories/product.repository.interface';
+import { Product } from '../../domain/models/product.model';
 
 export interface UpdateProductCommand {
   id: string;

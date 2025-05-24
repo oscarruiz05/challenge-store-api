@@ -3,7 +3,7 @@ import {
   CreateProductCommand,
   CreateProductUseCase,
 } from '../use-cases/create-product.use-case';
-import { Product } from '../../domain/entities/product.entity';
+import { Product } from '../../domain/models/product.model';
 import { GetProductUseCase } from '../use-cases/get-product.use-case';
 import { GetAllProductsUseCase } from '../use-cases/get-all-products.use-case';
 import {

@@ -1,6 +1,6 @@
 import { ProductOrmEntity } from './../../app/products/infrastructure/persistence/entities/product.orm.entity';
 import { TypeOrmProductRepository } from './../../app/products/infrastructure/persistence/repositories/typeorm-product.repository';
-import { ProductsModule } from './../../app/products/produtcs.module';
+import { ProductsModule } from '../../app/products/products.module';
 import { Module } from '@nestjs/common';
 import { ProductSeeder } from './product.seeder';
 import { DatabaseModule } from '../database/database.module';

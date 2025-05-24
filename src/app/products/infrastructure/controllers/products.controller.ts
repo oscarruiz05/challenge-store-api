@@ -11,7 +11,7 @@ import {
 } from '@nestjs/common';
 import { ProductService } from '../../application/services/product.service';
 import { CreateProductCommand } from '../../application/use-cases/create-product.use-case';
-import { Product } from '../../domain/entities/product.entity';
+import { Product } from '../../domain/models/product.model';
 import { UpdateProductCommand } from '../../application/use-cases/update-product.use-case';
 import { CreateProductDto } from './dtos/create-product.dto';
 import { UpdateProductDto } from './dtos/update-product.dto';

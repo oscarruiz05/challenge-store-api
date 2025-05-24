@@ -1,5 +1,5 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
-import { ProductRepository } from '../../domain/repositories/product.repository';
+import { ProductRepository } from '../../domain/repositories/product.repository.interface';
 
 @Injectable()
 export class DeleteProductUseCase {

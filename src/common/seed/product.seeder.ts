@@ -1,6 +1,6 @@
 import { TypeOrmProductRepository } from './../../app/products/infrastructure/persistence/repositories/typeorm-product.repository';
 import { Injectable, Logger } from "@nestjs/common";
-import { Product } from './../../app/products/domain/entities/product.entity';
+import { Product } from '../../app/products/domain/models/product.model';
 import * as productData from './data/products.json';
 import { v4 as uuidv4 } from 'uuid';
 

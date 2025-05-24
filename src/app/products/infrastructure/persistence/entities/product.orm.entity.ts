@@ -1,4 +1,4 @@
-import { Product } from './../../../domain/entities/product.entity';
+import { Product } from '../../../domain/models/product.model';
 import { Column, Entity, PrimaryColumn } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -21,26 +21,4 @@ export class ProductOrmEntity {
 
   @Column('int')
   stock: number;
-
-  static fromDomain(product: Product): ProductOrmEntity {
-    const ormEntity = new ProductOrmEntity();
-    ormEntity.id = product.id;
-    ormEntity.name = product.name;
-    ormEntity.description = product.description;
-    ormEntity.image = product.image;
-    ormEntity.price = product.price;
-    ormEntity.stock = product.stock;
-    return ormEntity;
-  }
-
-  toDomain(): Product {
-    return new Product(
-      this.id,
-      this.name,
-      this.description,
-      this.image,
-      this.price,
-      this.stock,
-    );
-  }
 }

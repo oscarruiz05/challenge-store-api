@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { ProductRepository } from '../../domain/repositories/product.repository';
-import { Product } from '../../domain/entities/product.entity';
+import { ProductRepository } from '../../domain/repositories/product.repository.interface';
+import { Product } from '../../domain/models/product.model';
 import { v4 as uuidv4 } from 'uuid';
 
 export interface CreateProductCommand {
