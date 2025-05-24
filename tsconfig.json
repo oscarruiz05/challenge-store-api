@@ -6,10 +6,15 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "target": "ES2023",
+    "target": "esnext",
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
+    "paths": {
+      "@app/*": ["app/*"],
+      "@common/*": ["common/*"],
+      "@products/*": ["app/products/*"]
+    },
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": true,
