@@ -3,8 +3,8 @@ import { DeliveryStatusEnum } from "../../infrastructure/persistence/entities/de
 export class Delivery {
   id: string;
   transaction_id: string;
-  customer_id: string;
   product_id: string;
+  customer_id: string;
   address: string;
   status: DeliveryStatusEnum;
 
