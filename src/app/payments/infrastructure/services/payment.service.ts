@@ -29,7 +29,7 @@ export class PaymentService implements PaymentGateway {
     );
 
     const response = await axios.post(
-      '',
+      `${this.apiUrl}/transactions`,
       {
         amount_in_cents: params.amountInCents,
         currency: params.currency,
