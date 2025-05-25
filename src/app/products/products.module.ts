@@ -9,6 +9,7 @@ import { UpdateProductUseCase } from './application/use-cases/update-product.use
 import { DeleteProductUseCase } from './application/use-cases/delete-product.use-case';
 import { ProductsController } from './infrastructure/controllers/products.controller';
 import { ProductService } from './application/services/product.service';
+import { UpdateProductStockUseCase } from './application/use-cases/update-product-stock.use-case';
 
 @Module({
   imports: [TypeOrmModule.forFeature([ProductOrmEntity])],
@@ -24,6 +25,7 @@ import { ProductService } from './application/services/product.service';
     GetProductUseCase,
     UpdateProductUseCase,
     DeleteProductUseCase,
+    UpdateProductStockUseCase,
     // services
     ProductService,
   ],
