@@ -21,7 +21,7 @@ export class TransactionOrmEntity {
     customer_id: string;
 
     @Column('int')
-    cant: number;
+    quantity: number;
 
     @Column('decimal')
     amount: number;

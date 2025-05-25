@@ -7,7 +7,7 @@ import { TransactionStatusEnum } from '../../infrastructure/persistence/entities
 export interface CreateTransactionCommand {
   product_id: string;
   customer_id: string;
-  cant: number;
+  quantity: number;
   amount: number;
   reference: string;
 }
@@ -24,7 +24,7 @@ export class CreateTransactionUseCase {
       uuidv4(),
       command.product_id,
       command.customer_id,
-      command.cant,
+      command.quantity,
       command.amount,
       command.reference,
       TransactionStatusEnum.PENDING,
