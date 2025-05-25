@@ -15,8 +15,8 @@ import { CreateOrUpdateCustomerUseCase } from '../../../customers/application/us
 import { CreateTransactionUseCase } from './create-transaction.use-case';
 import { UpdateTransactionStatusUseCase } from './update-transaction-status.use-case';
 import { UpdateTransactionUseCase } from './update-transaction.use-case';
-import { CheckTransactionStatusUseCase } from './check-transaction-status.use-case';
 import { CheckTransactionStatusTask } from '../../infrastructure/tasks/check-transaction-status.task';
+import { FinalizeApprovedTransactionUseCase } from './finalize-approved-transaction.use-case';
 
 export interface ProcessTransactionPaymentCommand {
   product_id: string;
@@ -53,6 +53,7 @@ export class ProcessTransactionPaymentUseCase {
     private readonly updateProductStockUseCase: UpdateProductStockUseCase,
     private readonly createDeliveryUseCase: CreateDeliveryUseCase,
     private readonly checkTransactionStatusTask: CheckTransactionStatusTask,
+    private readonly finalizeApprovedTransactionUseCase: FinalizeApprovedTransactionUseCase,
   ) {}
 
   async execute(
@@ -114,23 +115,15 @@ export class ProcessTransactionPaymentUseCase {
         transaction_id: paymentResult.transactionId,
       });
 
+      // si el pago está pendiente, iniciar la tarea de verificación
+      if (status === TransactionStatusEnum.PENDING) {
+        this.checkTransactionStatusTask.start(transaction.id);
+      }
+
       // si el pago fue aprobado, actualizar el stock del producto y crear la entrega
       if (status === TransactionStatusEnum.APPROVED) {
-        // actualizar el stock del producto
-        const newStock = product.stock - command.quantity;
-        await this.updateProductStockUseCase.execute({
-          id: product.id,
-          stock: newStock,
-        });
-
-        // crear la entrega
-        await this.createDeliveryUseCase.execute({
-          transaction_id: transaction.id,
-          product_id: product.id,
-          customer_id: customer.id,
-          address: customer.address,
-        });
-
+        await this.finalizeApprovedTransactionUseCase.execute(transaction.id);
+        
         return {
           success: true,
           message: 'Payment approved and delivery created',

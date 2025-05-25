@@ -17,6 +17,8 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { CheckTransactionStatusUseCase } from './application/use-cases/check-transaction-status.use-case';
 import { CheckTransactionStatusTask } from './infrastructure/tasks/check-transaction-status.task';
 import { UpdateTransactionUseCase } from './application/use-cases/update-transaction.use-case';
+import { TransactionsGateway } from './infrastructure/gateways/transactions.gateway';
+import { FinalizeApprovedTransactionUseCase } from './application/use-cases/finalize-approved-transaction.use-case';
 
 @Module({
   imports: [
@@ -33,6 +35,7 @@ import { UpdateTransactionUseCase } from './application/use-cases/update-transac
       provide: 'TransactionRepository',
       useClass: TypeOrmTransactionRepository,
     },
+    TransactionsGateway,
     // use cases
     CreateTransactionUseCase,
     GetTransactionUseCase,
@@ -42,6 +45,7 @@ import { UpdateTransactionUseCase } from './application/use-cases/update-transac
     ProcessTransactionPaymentUseCase,
     CheckTransactionStatusUseCase,
     CheckTransactionStatusTask,
+    FinalizeApprovedTransactionUseCase,
     // services
     TransactionService,
   ],

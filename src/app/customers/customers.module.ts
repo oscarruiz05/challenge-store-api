@@ -25,6 +25,6 @@ import { CreateOrUpdateCustomerUseCase } from "./application/use-cases/create-or
         // services
         CustomerService
     ],
-    exports: [CreateOrUpdateCustomerUseCase]
+    exports: [CreateOrUpdateCustomerUseCase, GetCustomerUseCase]
 })
 export class CustomersModule {}
