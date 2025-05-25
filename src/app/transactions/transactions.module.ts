@@ -13,10 +13,15 @@ import { CustomersModule } from '../customers/customers.module';
 import { ProductsModule } from '../products/products.module';
 import { PaymentsModule } from '../payments/payments.module';
 import { DeliveriesModule } from '../deliveries/deliveries.module';
+import { ScheduleModule } from '@nestjs/schedule';
+import { CheckTransactionStatusUseCase } from './application/use-cases/check-transaction-status.use-case';
+import { CheckTransactionStatusTask } from './infrastructure/tasks/check-transaction-status.task';
+import { UpdateTransactionUseCase } from './application/use-cases/update-transaction.use-case';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([TransactionOrmEntity]),
+    ScheduleModule.forRoot(),
     CustomersModule,
     ProductsModule,
     PaymentsModule,
@@ -24,16 +29,21 @@ import { DeliveriesModule } from '../deliveries/deliveries.module';
   ],
   controllers: [TransactionsController],
   providers: [
-    TransactionService,
-    CreateTransactionUseCase,
-    GetTransactionUseCase,
-    GetAllTransactionsUseCase,
-    UpdateTransactionStatusUseCase,
-    ProcessTransactionPaymentUseCase,
     {
       provide: 'TransactionRepository',
       useClass: TypeOrmTransactionRepository,
     },
+    // use cases
+    CreateTransactionUseCase,
+    GetTransactionUseCase,
+    GetAllTransactionsUseCase,
+    UpdateTransactionStatusUseCase,
+    UpdateTransactionUseCase,
+    ProcessTransactionPaymentUseCase,
+    CheckTransactionStatusUseCase,
+    CheckTransactionStatusTask,
+    // services
+    TransactionService,
   ],
   exports: [TransactionService],
 })

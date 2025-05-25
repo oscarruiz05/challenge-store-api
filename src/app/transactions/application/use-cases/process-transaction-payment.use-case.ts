@@ -14,6 +14,9 @@ import { CreateDeliveryUseCase } from '../../../deliveries/application/use-cases
 import { CreateOrUpdateCustomerUseCase } from '../../../customers/application/use-cases/create-or-update-customer.use-case';
 import { CreateTransactionUseCase } from './create-transaction.use-case';
 import { UpdateTransactionStatusUseCase } from './update-transaction-status.use-case';
+import { UpdateTransactionUseCase } from './update-transaction.use-case';
+import { CheckTransactionStatusUseCase } from './check-transaction-status.use-case';
+import { CheckTransactionStatusTask } from '../../infrastructure/tasks/check-transaction-status.task';
 
 export interface ProcessTransactionPaymentCommand {
   product_id: string;
@@ -44,10 +47,12 @@ export class ProcessTransactionPaymentUseCase {
     private readonly paymentGateway: PaymentGateway,
     private readonly createOrUpdateCustomerUseCase: CreateOrUpdateCustomerUseCase,
     private readonly createTransactionUseCase: CreateTransactionUseCase,
+    private readonly updateTransactionUseCase: UpdateTransactionUseCase,
     private readonly updateTransactionStatusUseCase: UpdateTransactionStatusUseCase,
     private readonly getProductUseCase: GetProductUseCase,
     private readonly updateProductStockUseCase: UpdateProductStockUseCase,
     private readonly createDeliveryUseCase: CreateDeliveryUseCase,
+    private readonly checkTransactionStatusTask: CheckTransactionStatusTask,
   ) {}
 
   async execute(
@@ -82,6 +87,7 @@ export class ProcessTransactionPaymentUseCase {
       customer_id: customer.id,
       quantity: command.quantity,
       amount: amount,
+      transaction_id: null,
       reference: reference,
     });
 
@@ -102,9 +108,10 @@ export class ProcessTransactionPaymentUseCase {
       const status = this.mapPaymentStatusToTransactionStatus(
         paymentResult.status,
       );
-      await this.updateTransactionStatusUseCase.execute({
+      await this.updateTransactionUseCase.execute({
         id: transaction.id,
-        status,
+        status: status,
+        transaction_id: paymentResult.transactionId,
       });
 
       // si el pago fue aprobado, actualizar el stock del producto y crear la entrega
@@ -137,6 +144,7 @@ export class ProcessTransactionPaymentUseCase {
         payment_status: status,
       };
     } catch (error) {
+      console.log("🚀 ~ ProcessTransactionPaymentUseCase ~ error:", error)
       const status = TransactionStatusEnum.ERROR;
       await this.updateTransactionStatusUseCase.execute({
         id: transaction.id,

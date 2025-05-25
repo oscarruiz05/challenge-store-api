@@ -63,6 +63,26 @@ export class PaymentService implements PaymentGateway {
     };
   }
 
+  async getTransactionStatus(transactionId: string): Promise<{
+    status: 'APPROVED' | 'DECLINED' | 'PENDING';
+  }> {
+    const response: any = await axios.get(
+      `${this.apiUrl}/transactions/${transactionId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${this.privateKey}`,
+        },
+      },
+    );
+
+    const data: any = response.data.data;
+    console.log("🚀 ~ PaymentService ~ getTransactionStatus ~ data:", data)
+
+    return {
+      status: data.status,
+    };
+  }
+
   private async createSignature(
     amount: number,
     currency: string,
@@ -70,8 +90,8 @@ export class PaymentService implements PaymentGateway {
   ): Promise<string> {
     const raw = `${reference}${amount}${currency}${this.integrityKey}`;
     const encondedText = new TextEncoder().encode(raw);
-    const hashBuffer = await crypto.subtle.digest("SHA-256", encondedText);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', encondedText);
     const hashArray = Array.from(new Uint8Array(hashBuffer));
-    return hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
+    return hashArray.map((b) => b.toString(16).padStart(2, '0')).join('');
   }
 }

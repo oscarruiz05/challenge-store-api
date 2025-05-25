@@ -31,6 +31,11 @@ export class CreateTransactionsTable1748124295186
             type: 'decimal',
           },
           {
+            name: 'transaction_id',
+            type: 'text',
+            isNullable: true,
+          },
+          {
             name: 'reference',
             type: 'text',
           },

@@ -1,9 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { IsNull, Not, Repository } from 'typeorm';
 import { Transaction } from '../../../domain/models/transaction.model';
 import { TransactionRepository } from '../../../domain/repositories/transaction.repository.interface';
-import { TransactionOrmEntity, TransactionStatusEnum } from '../entities/transaction.orm.entity';
+import {
+  TransactionOrmEntity,
+  TransactionStatusEnum,
+} from '../entities/transaction.orm.entity';
 import { TransactionMapper } from '../mappers/transaction.mapper';
 
 @Injectable()
@@ -17,7 +20,9 @@ export class TypeOrmTransactionRepository implements TransactionRepository {
     const transactionEntity = await this.transactionRepository.findOne({
       where: { id },
     });
-    return transactionEntity ? TransactionMapper.toDomain(transactionEntity) : null;
+    return transactionEntity
+      ? TransactionMapper.toDomain(transactionEntity)
+      : null;
   }
 
   async findAll(): Promise<Transaction[]> {
@@ -27,7 +32,8 @@ export class TypeOrmTransactionRepository implements TransactionRepository {
 
   async save(transaction: Transaction): Promise<Transaction> {
     const transactionEntity = TransactionMapper.toOrmEntity(transaction);
-    const savedEntity = await this.transactionRepository.save(transactionEntity);
+    const savedEntity =
+      await this.transactionRepository.save(transactionEntity);
     return TransactionMapper.toDomain(savedEntity);
   }
 
@@ -43,7 +49,8 @@ export class TypeOrmTransactionRepository implements TransactionRepository {
     const transactionEntity = TransactionMapper.toOrmEntity(transaction);
     transactionEntity.created_at = existingTransaction.created_at;
 
-    const updatedEntity = await this.transactionRepository.save(transactionEntity);
+    const updatedEntity =
+      await this.transactionRepository.save(transactionEntity);
     return TransactionMapper.toDomain(updatedEntity);
   }
 
@@ -58,7 +65,18 @@ export class TypeOrmTransactionRepository implements TransactionRepository {
 
     existingTransaction.status = status as TransactionStatusEnum;
 
-    const updatedEntity = await this.transactionRepository.save(existingTransaction);
+    const updatedEntity =
+      await this.transactionRepository.save(existingTransaction);
     return TransactionMapper.toDomain(updatedEntity);
+  }
+
+  async findPending(): Promise<Transaction[]> {
+    const transactionEntities = await this.transactionRepository.find({
+      where: {
+        status: TransactionStatusEnum.PENDING,
+        transaction_id: Not(IsNull()),
+      },
+    });
+    return transactionEntities.map(TransactionMapper.toDomain);
   }
 }

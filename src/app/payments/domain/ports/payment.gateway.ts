@@ -15,4 +15,8 @@ export interface PaymentGateway {
     transactionId: string;
     outcomeMessage: string;
   }>;
+
+  getTransactionStatus(transactionId: string): Promise<{
+    status: 'APPROVED' | 'DECLINED' | 'PENDING';
+  }>;
 }
