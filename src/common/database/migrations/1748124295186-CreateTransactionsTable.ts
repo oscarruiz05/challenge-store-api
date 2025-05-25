@@ -23,7 +23,7 @@ export class CreateTransactionsTable1748124295186
             type: 'uuid',
           },
           {
-            name: 'cant',
+            name: 'quantity',
             type: 'int',
           },
           {

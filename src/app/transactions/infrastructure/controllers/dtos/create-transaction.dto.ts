@@ -12,7 +12,7 @@ export class CreateTransactionDto {
   @IsNotEmpty()
   @IsNumber()
   @IsPositive()
-  cant: number;
+  quantity: number;
 
   @IsNotEmpty()
   @IsNumber()
