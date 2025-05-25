@@ -11,6 +11,7 @@ import {
   UpdateProductUseCase,
 } from '../use-cases/update-product.use-case';
 import { DeleteProductUseCase } from '../use-cases/delete-product.use-case';
+import { UpdateProductStockCommand, UpdateProductStockUseCase } from '../use-cases/update-product-stock.use-case';
 
 @Injectable()
 export class ProductService {
@@ -20,6 +21,7 @@ export class ProductService {
     private readonly getAllProductsUseCase: GetAllProductsUseCase,
     private readonly updateProductUseCase: UpdateProductUseCase,
     private readonly deleteProductUseCase: DeleteProductUseCase,
+    private readonly updateProductStockUseCase: UpdateProductStockUseCase
   ) {}
 
   async createProduct(command: CreateProductCommand): Promise<Product> {
@@ -40,5 +42,9 @@ export class ProductService {
 
   async deleteProduct(id: string): Promise<void> {
     await this.deleteProductUseCase.execute(id);
+  }
+
+  async updateProductStock(command: UpdateProductStockCommand): Promise<Product> {
+    return this.updateProductStockUseCase.execute(command);
   }
 }
