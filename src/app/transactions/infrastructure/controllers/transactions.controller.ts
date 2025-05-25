@@ -7,6 +7,7 @@ import {
   Put,
   HttpCode,
   HttpStatus,
+  BadRequestException,
 } from '@nestjs/common';
 import { TransactionService } from '../../application/services/transaction.service';
 import { CreateTransactionCommand } from '../../application/use-cases/create-transaction.use-case';
@@ -14,18 +15,20 @@ import { Transaction } from '../../domain/models/transaction.model';
 import { UpdateTransactionStatusCommand } from '../../application/use-cases/update-transaction-status.use-case';
 import { CreateTransactionDto } from './dtos/create-transaction.dto';
 import { UpdateTransactionStatusDto } from './dtos/update-transaction-status.dto';
+import { CreateTransactionWithCustomerDto } from './dtos/create-transaction-with-customer.dto';
+import { ProcessTransactionPaymentCommand, TransactionResult } from '../../application/use-cases/process-transaction-payment.use-case';
 
 @Controller('transactions')
 export class TransactionsController {
   constructor(private readonly transactionService: TransactionService) {}
 
   @Post()
-  @HttpCode(HttpStatus.CREATED)
+  @HttpCode(HttpStatus.OK)
   async createTransaction(
     @Body() createTransactionDto: CreateTransactionDto,
-  ): Promise<Transaction> {
-    const command: CreateTransactionCommand = createTransactionDto;
-    return this.transactionService.createTransaction(command);
+  ): Promise<TransactionResult> {
+    const command: ProcessTransactionPaymentCommand = createTransactionDto;
+    return this.transactionService.processTransactionPayment(command);
   }
 
   @Get(':id')

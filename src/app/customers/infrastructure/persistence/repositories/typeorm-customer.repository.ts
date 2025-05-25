@@ -29,4 +29,9 @@ export class TypeOrmCustomerRepository implements CustomerRepository {
     const updatedOrmEntity = await this.customerRepository.save(ormEntity);
     return CustomerMapper.toDomain(updatedOrmEntity);
   }
+
+  async findByEmail(email: string): Promise<Customer | null> {
+    const ormEntity = await this.customerRepository.findOneBy({ email });
+    return ormEntity ? CustomerMapper.toDomain(ormEntity) : null;
+  }
 }

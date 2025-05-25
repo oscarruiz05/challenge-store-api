@@ -9,6 +9,7 @@ export class TransactionMapper {
       ormEntity.customer_id,
       ormEntity.quantity,
       ormEntity.amount,
+      ormEntity.transaction_id,
       ormEntity.reference,
       ormEntity.status,
     );
@@ -21,6 +22,7 @@ export class TransactionMapper {
     ormEntity.customer_id = domain.customer_id;
     ormEntity.quantity = domain.quantity;
     ormEntity.amount = domain.amount;
+    ormEntity.transaction_id = domain.transaction_id ?? '';
     ormEntity.reference = domain.reference;
     ormEntity.status = domain.status;
     return ormEntity;

@@ -9,6 +9,7 @@ export interface CreateTransactionCommand {
   customer_id: string;
   quantity: number;
   amount: number;
+  transaction_id: string | null;
   reference: string;
 }
 
@@ -26,6 +27,7 @@ export class CreateTransactionUseCase {
       command.customer_id,
       command.quantity,
       command.amount,
+      command.transaction_id,
       command.reference,
       TransactionStatusEnum.PENDING,
     );

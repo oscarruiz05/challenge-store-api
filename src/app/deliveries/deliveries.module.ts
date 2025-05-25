@@ -25,6 +25,6 @@ import { DeliveriesController } from './infrastructure/controllers/deliveries.co
     // services
     DeliveryService,
   ],
-  exports: [DeliveryService],
+  exports: [DeliveryService, CreateDeliveryUseCase],
 })
 export class DeliveriesModule {}

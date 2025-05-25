@@ -27,6 +27,9 @@ export class TransactionOrmEntity {
     amount: number;
 
     @Column('text')
+    transaction_id: string;
+
+    @Column('text')
     reference: string;
 
     @Column({

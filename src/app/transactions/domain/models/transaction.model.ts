@@ -6,6 +6,7 @@ export class Transaction {
   customer_id: string;
   quantity: number;
   amount: number;
+  transaction_id: string | null;
   reference: string;
   status: TransactionStatusEnum;
 
@@ -15,6 +16,7 @@ export class Transaction {
     customer_id: string,
     quantity: number,
     amount: number,
+    transaction_id: string | null,
     reference: string,
     status: TransactionStatusEnum,
   ) {
@@ -23,6 +25,7 @@ export class Transaction {
     this.customer_id = customer_id;
     this.quantity = quantity;
     this.amount = amount;
+    this.transaction_id = transaction_id;
     this.reference = reference;
     this.status = status;
   }

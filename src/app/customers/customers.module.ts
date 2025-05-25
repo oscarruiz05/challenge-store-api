@@ -7,6 +7,7 @@ import { CreateCustomerUseCase } from "./application/use-cases/create-customer.u
 import { UpdateCustomerUseCase } from "./application/use-cases/update-customer.use-case";
 import { GetCustomerUseCase } from "./application/use-cases/get-customer.use-case";
 import { CustomerService } from "./application/services/customer.service";
+import { CreateOrUpdateCustomerUseCase } from "./application/use-cases/create-or-update-customer.use-case";
 
 @Module({
     imports: [TypeOrmModule.forFeature([CustomerOrmEntity])],
@@ -20,8 +21,10 @@ import { CustomerService } from "./application/services/customer.service";
         CreateCustomerUseCase,
         UpdateCustomerUseCase,
         GetCustomerUseCase,
+        CreateOrUpdateCustomerUseCase,
         // services
         CustomerService
     ],
+    exports: [CreateOrUpdateCustomerUseCase, GetCustomerUseCase]
 })
 export class CustomersModule {}
