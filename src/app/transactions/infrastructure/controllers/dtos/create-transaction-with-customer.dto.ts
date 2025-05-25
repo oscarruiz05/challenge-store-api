@@ -1,16 +1,8 @@
 import { Type } from 'class-transformer';
-import {
-  IsNotEmpty,
-  IsNumber,
-  IsObject,
-  IsPositive,
-  IsString,
-  IsUUID,
-  ValidateNested,
-} from 'class-validator';
+import { IsNotEmpty, IsNumber, IsObject, IsPositive, IsString, IsUUID, ValidateNested } from 'class-validator';
 import { CreateCustomerDto } from '../../../../customers/infrastructure/controllers/dtos/create-customer.dto';
 
-export class CreateTransactionDto {
+export class CreateTransactionWithCustomerDto {
   @IsNotEmpty()
   @IsUUID()
   product_id: string;
@@ -23,14 +15,6 @@ export class CreateTransactionDto {
   @IsNotEmpty()
   @IsString()
   card_token: string;
-
-  @IsNotEmpty()
-  @IsString()
-  acceptance_token: string;
-
-  @IsNotEmpty()
-  @IsString()
-  accept_personal_auth: string;
 
   @IsObject()
   @ValidateNested()

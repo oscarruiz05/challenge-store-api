@@ -29,6 +29,6 @@ import { UpdateProductStockUseCase } from './application/use-cases/update-produc
     // services
     ProductService,
   ],
-  exports: ['ProductRepository'],
+  exports: ['ProductRepository', GetProductUseCase, UpdateProductStockUseCase],
 })
 export class ProductsModule {}

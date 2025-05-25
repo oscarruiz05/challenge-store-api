@@ -17,20 +17,24 @@ export class PaymentService implements PaymentGateway {
     token: string;
     reference: string;
     description: string;
+    acceptanceToken: string;
+    acceptPersonalAuth: string;
   }): Promise<{
     status: PaymentStatus;
     transactionId: string;
     outcomeMessage: string;
   }> {
-    const signature = this.createSignature(
+    const signature = await this.createSignature(
       params.amountInCents,
       params.currency,
       params.reference,
     );
 
-    const response = await axios.post(
+    const response: any = await axios.post(
       `${this.apiUrl}/transactions`,
       {
+        acceptance_token: params.acceptanceToken,
+        accept_personal_auth: params.acceptPersonalAuth,
         amount_in_cents: params.amountInCents,
         currency: params.currency,
         customer_email: params.customerEmail,
@@ -41,9 +45,7 @@ export class PaymentService implements PaymentGateway {
         },
         reference: params.reference,
         payment_description: params.description,
-        signature: {
-          integrity: signature,
-        },
+        signature: signature,
       },
       {
         headers: {
@@ -52,22 +54,24 @@ export class PaymentService implements PaymentGateway {
       },
     );
 
-    const data: any = response.data;
+    const data: any = response.data.data;
 
     return {
       status: data.status as PaymentStatus,
-      transactionId: data.transaction_id,
-      outcomeMessage:
-        data.outcome_message || 'Transaction completed successfully',
+      transactionId: data.id,
+      outcomeMessage: data.status_message,
     };
   }
 
-  private createSignature(
+  private async createSignature(
     amount: number,
     currency: string,
     reference: string,
-  ): string {
-    const raw = `${amount}${currency}${reference}${this.integrityKey}`;
-    return crypto.createHash('sha256').update(raw).digest('hex');
+  ): Promise<string> {
+    const raw = `${reference}${amount}${currency}${this.integrityKey}`;
+    const encondedText = new TextEncoder().encode(raw);
+    const hashBuffer = await crypto.subtle.digest("SHA-256", encondedText);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
   }
 }

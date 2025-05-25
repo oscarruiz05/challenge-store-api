@@ -8,6 +8,8 @@ export interface PaymentGateway {
     token: string;
     reference: string;
     description: string;
+    acceptanceToken: string;
+    acceptPersonalAuth: string;
   }): Promise<{
     status: PaymentStatus;
     transactionId: string;
