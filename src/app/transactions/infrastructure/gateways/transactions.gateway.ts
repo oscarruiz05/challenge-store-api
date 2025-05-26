@@ -13,7 +13,7 @@ export class TransactionsGateway {
   emitStatusUpdate(transactionId: string, status: string) {
     this.server.emit(`transaction-status-${transactionId}`, {
       transactionId,
-      status,
+      payment_status: status,
     });
   }
 }

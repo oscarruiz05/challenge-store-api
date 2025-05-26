@@ -34,9 +34,11 @@ export interface ProcessTransactionPaymentCommand {
 }
 
 export interface TransactionResult {
-  success: boolean;
   message: string;
   payment_status: TransactionStatusEnum;
+  order_id: string;
+  amount: number;
+  quantity: number;
   error?: any;
 }
 
@@ -118,26 +120,37 @@ export class ProcessTransactionPaymentUseCase {
       // si el pago está pendiente, iniciar la tarea de verificación
       if (status === TransactionStatusEnum.PENDING) {
         this.checkTransactionStatusTask.start(transaction.id);
+        return {
+          message: 'Payment pennding please wait for confirmation',
+          payment_status: status,
+          order_id: transaction.id,
+          amount: transaction.amount,
+          quantity: transaction.quantity,
+        };
       }
 
       // si el pago fue aprobado, actualizar el stock del producto y crear la entrega
       if (status === TransactionStatusEnum.APPROVED) {
         await this.finalizeApprovedTransactionUseCase.execute(transaction.id);
-        
+
         return {
-          success: true,
           message: 'Payment approved and delivery created',
           payment_status: status,
+          order_id: transaction.id,
+          amount: transaction.amount,
+          quantity: transaction.quantity,
         };
       }
 
       return {
-        success: false,
         message: paymentResult.outcomeMessage,
         payment_status: status,
+        order_id: transaction.id,
+        amount: transaction.amount,
+        quantity: transaction.quantity,
       };
     } catch (error) {
-      console.log("🚀 ~ ProcessTransactionPaymentUseCase ~ error:", error)
+      console.log('🚀 ~ ProcessTransactionPaymentUseCase ~ error:', error);
       const status = TransactionStatusEnum.ERROR;
       await this.updateTransactionStatusUseCase.execute({
         id: transaction.id,
@@ -145,9 +158,11 @@ export class ProcessTransactionPaymentUseCase {
       });
 
       return {
-        success: false,
         message: 'Payment error: ' + (error.message || 'Unknown error'),
         payment_status: status,
+        order_id: transaction.id,
+        amount: transaction.amount,
+        quantity: transaction.quantity,
         error: error.response.data.error,
       };
     }
