@@ -1,40 +1,25 @@
-import {
-  IsNotEmpty,
-  IsNumber,
-  IsString,
-  Min,
-  IsOptional,
-  IsUUID,
-} from 'class-validator';
-import { Type } from 'class-transformer';
-import { UpdateProductCommand } from '../../../application/use-cases/update-product.use-case';
+import { IsNotEmpty, IsNumber, IsOptional, IsString, Min } from 'class-validator';
 
-export class UpdateProductDto implements UpdateProductCommand {
-  @IsUUID()
-  @IsNotEmpty()
-  id: string;
-
-  @IsString()
+export class UpdateProductDto {
   @IsOptional()
+  @IsString()
   name?: string;
 
-  @IsString()
   @IsOptional()
+  @IsString()
   description?: string;
 
-  @IsString()
   @IsOptional()
+  @IsString()
   image?: string;
 
+  @IsOptional()
   @IsNumber()
   @Min(0)
-  @IsOptional()
-  @Type(() => Number)
   price?: number;
 
+  @IsOptional()
   @IsNumber()
   @Min(0)
-  @IsOptional()
-  @Type(() => Number)
   stock?: number;
 }
