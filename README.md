@@ -25,6 +25,9 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+![image](https://github.com/user-attachments/assets/e2e86179-9437-4968-b68d-a2aadc0d2692)
+
+
 ## Project setup
 
 ```bash
