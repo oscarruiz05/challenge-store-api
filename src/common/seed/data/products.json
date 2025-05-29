@@ -1,72 +1,45 @@
 [
-    {
-      "name": "Laptop Gaming X",
-      "description": "Potente laptop para juegos",
-      "image": "https://example.com/laptop-gaming-x.jpg",
-      "price": 1500.00,
-      "stock": 50
-    },
-    {
-      "name": "Teclado Mecánico RGB",
-      "description": "Teclado con switches Cherry MX y retroiluminación RGB",
-      "image": "https://example.com/laptop-gaming-x.jpg",
-      "price": 120.00,
-      "stock": 100
-    },
-    {
-      "name": "Ratón Gaming Pro",
-      "description": "Ratón ergonómico con sensor de alta precisión",
-      "image": "https://example.com/laptop-gaming-x.jpg",
-      "price": 80.00,
-      "stock": 75
-    },
-    {
-      "name": "Monitor 4K Ultra HD",
-      "description": "Monitor de 27 pulgadas con resolución 4K",
-      "image": "https://example.com/laptop-gaming-x.jpg",
-      "price": 600.00,
-      "stock": 30
-    },
-    {
-      "name": "Auriculares Inalámbricos",
-      "description": "Auriculares con cancelación de ruido y conectividad Bluetooth",
-      "image": "https://example.com/laptop-gaming-x.jpg",
-      "price": 150.00,
-      "stock": 200
-    },
-    {
-      "name": "Webcam HD 1080p",
-      "description": "Cámara web con calidad de video Full HD",
-      "image": "https://example.com/laptop-gaming-x.jpg",
-      "price": 70.00,
-      "stock": 150
-    },
-    {
-      "name": "Silla Gaming Ergonomica",
-      "description": "Silla ajustable y cómoda para largas sesiones de juego",
-      "image": "https://example.com/laptop-gaming-x.jpg",
-      "price": 250.00,
-      "stock": 20
-    },
-    {
-      "name": "Micrófono USB Profesional",
-      "description": "Micrófono de condensador con calidad de estudio",
-      "image": "https://example.com/laptop-gaming-x.jpg",
-      "price": 100.00,
-      "stock": 60
-    },
-    {
-      "name": "Disco Duro Externo 2TB",
-      "description": "Almacenamiento portátil con conexión USB 3.0",
-      "image": "https://example.com/laptop-gaming-x.jpg",
-      "price": 120.00,
-      "stock": 40
-    },
-    {
-      "name": "Router Wi-Fi 6",
-      "description": "Router de alta velocidad con tecnología Wi-Fi 6",
-      "image": "https://example.com/laptop-gaming-x.jpg",
-      "price": 200.00,
-      "stock": 25
-    }
-  ]
+  {
+    "name": "Laptop Gaming X",
+    "description": "Laptop de alto rendimiento con procesador de última generación, tarjeta gráfica dedicada y pantalla Full HD, ideal para videojuegos exigentes y tareas de alto consumo.",
+    "image": "https://res.cloudinary.com/duyxn2jqz/image/upload/v1748488479/prueba/lkbli1xpxowtnkrwokvm.webp",
+    "price": 4000000.0,
+    "stock": 100
+  },
+  {
+    "name": "Teclado Mecánico RGB",
+    "description": "Teclado mecánico con switches Cherry MX, retroiluminación RGB personalizable y diseño ergonómico, ideal para juegos y escritura prolongada con gran precisión y estilo.",
+    "image": "https://res.cloudinary.com/duyxn2jqz/image/upload/v1748488479/prueba/zekyjm1fow0liisxsa9x.webp",
+    "price": 350000.0,
+    "stock": 100
+  },
+  {
+    "name": "Ratón Gaming Pro",
+    "description": "Ratón ergonómico con sensor óptico de alta precisión, múltiples niveles de DPI ajustables y botones programables, diseñado para ofrecer un control superior en juegos competitivos.",
+    "image": "https://res.cloudinary.com/duyxn2jqz/image/upload/v1748488479/prueba/kir3x0ltpjz4ogqgijxc.webp",
+    "price": 250000.0,
+    "stock": 100
+  },
+  {
+    "name": "Monitor 4K Ultra HD",
+    "description": "Monitor de 27 pulgadas con resolución 4K Ultra HD, gran nitidez de imagen, colores vibrantes y puertos HDMI/DisplayPort, ideal para diseño, edición y entretenimiento multimedia.",
+    "image": "https://res.cloudinary.com/duyxn2jqz/image/upload/v1748488479/prueba/uc0eb1bzcuzwsfnu2vbd.webp",
+    "price": 600000.0,
+    "stock": 100
+  },
+  {
+    "name": "Auriculares Inalámbricos",
+    "description": "Auriculares Bluetooth con cancelación activa de ruido, micrófono integrado, batería de larga duración y gran comodidad para música, reuniones o juegos sin interrupciones.",
+    "image": "https://res.cloudinary.com/duyxn2jqz/image/upload/v1748488479/prueba/xpfynuynvdjtl4ws7sxo.webp",
+    "price": 150000.0,
+    "stock": 100
+  },
+  {
+    "name": "Webcam HD 1080p",
+    "description": "Cámara web con resolución Full HD 1080p, enfoque automático, micrófono con reducción de ruido y clip ajustable para monitores, ideal para videollamadas y transmisiones en vivo.",
+    "image": "https://res.cloudinary.com/duyxn2jqz/image/upload/v1748488479/prueba/idjzgscqabcn1xpxyqtt.webp",
+    "price": 70000.0,
+    "stock": 100
+  }
+]
+
