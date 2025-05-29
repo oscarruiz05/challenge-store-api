@@ -1,0 +1,371 @@
+{
+	"info": {
+		"_postman_id": "ea4ce667-0aff-4955-820a-f06ce9e3a027",
+		"name": "Store",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16949047"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/products",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateStock",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"stock\": 50\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/products/a902ada8-3a9f-42e2-8604-651ae759b408/stock",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products",
+								"a902ada8-3a9f-42e2-8604-651ae759b408",
+								"stock"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/products/c661ad6c-9353-4b61-b9bf-cbaa4c74081c",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products",
+								"c661ad6c-9353-4b61-b9bf-cbaa4c74081c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customers",
+			"item": [
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/customers/c2db0cd2-42f6-47f9-93d2-3f4b4903942d",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"customers",
+								"c2db0cd2-42f6-47f9-93d2-3f4b4903942d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Oscar\",\r\n    \"last_name\": \"Ruiz\",\r\n    \"email\": \"oscarruiz2614@gmail.com\",\r\n    \"number_phone\": \"1111111111\",\r\n    \"address\": \"Colombia\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/customers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Oscar Daniel\",\r\n    \"last_name\": \"Ruiz\",\r\n    \"email\": \"oscarruiz2614@gmail.com\",\r\n    \"number_phone\": \"1111111111\",\r\n    \"address\": \"Colombia\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/customers/c2db0cd2-42f6-47f9-93d2-3f4b4903942d",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"customers",
+								"c2db0cd2-42f6-47f9-93d2-3f4b4903942d"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transactions",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/transactions",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product_id\": \"05679011-c288-4bf5-89be-1a2e7ee0147b\",\r\n    \"quantity\": 1,\r\n    \"card_token\": \"tok_stagtest_5113_68D84a101f0Ae3A2f8Df6b220452855C\",\r\n    \"acceptance_token\": \"eyJhbGciOiJIUzI1NiJ9.eyJjb250cmFjdF9pZCI6MjQzLCJwZXJtYWxpbmsiOiJodHRwczovL3dvbXBpLmNvbS9hc3NldHMvZG93bmxvYWRibGUvcmVnbGFtZW50by1Vc3Vhcmlvcy1Db2xvbWJpYS5wZGYiLCJmaWxlX2hhc2giOiJkMWVkMDI3NjhlNDEzZWEyMzFmNzAwMjc0N2Y0N2FhOSIsImppdCI6IjE3NDgxNjc4MDItOTcwNDEiLCJlbWFpbCI6IiIsImV4cCI6MTc0ODE3MTQwMn0.rFpDfBwppPK5wg_4p2TGpMswgQngUVBqcYkqfSuEizY\",\r\n    \"accept_personal_auth\": \"eyJhbGciOiJIUzI1NiJ9.eyJjb250cmFjdF9pZCI6Mzc1LCJwZXJtYWxpbmsiOiJodHRwczovL3dvbXBpLmNvbS9hc3NldHMvZG93bmxvYWRibGUvYXV0b3JpemFjaW9uLWFkbWluaXN0cmFjaW9uLWRhdG9zLXBlcnNvbmFsZXMucGRmIiwiZmlsZV9oYXNoIjoiOTVkYzcwN2M0M2UxYmViMDAwMDUyZDNkNWJhZThhMDAiLCJqaXQiOiIxNzQ4MTY3ODAyLTY0MzQyIiwiZW1haWwiOiIifQ.BQhXhzR7r6odoYRF-7_F6iXZbp1q4s22vrnnEZWV_jE\",\r\n    \"customer\": {\r\n        \"name\": \"Oscar\",\r\n        \"last_name\": \"Ruiz\",\r\n        \"email\": \"oscarruiz2614@gmail.com\",\r\n        \"address\": \"Calle 45\",\r\n        \"number_phone\": \"3001234567\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/transactions",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateStatus",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"APPROVED\" // APPROVED, DECLINED, VOIDED, ERROR\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/transactions/7cb2de41-6666-4398-ab70-02167ff88219/status",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"transactions",
+								"7cb2de41-6666-4398-ab70-02167ff88219",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/transactions/7cb2de41-6666-4398-ab70-02167ff88219",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"transactions",
+								"7cb2de41-6666-4398-ab70-02167ff88219"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Deliveries",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/deliveries",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"deliveries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"transaction_id\": \"7cb2de41-6666-4398-ab70-02167ff88219\",\r\n    \"product_id\": \"a1b2c3d4-e5f6-7890-1234-567890abcdef\",\r\n    \"customer_id\": \"c2db0cd2-42f6-47f9-93d2-3f4b4903942d\",\r\n    \"address\": \"Rivera\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/deliveries",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"deliveries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateStatus",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"DELIVERED\" // DELIVERED, PENDING\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/deliveries/b614ce06-03d1-4a13-915e-d7e3991dacda/status",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"deliveries",
+								"b614ce06-03d1-4a13-915e-d7e3991dacda",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/deliveries/b614ce06-03d1-4a13-915e-d7e3991dacda",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"deliveries",
+								"b614ce06-03d1-4a13-915e-d7e3991dacda"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}
