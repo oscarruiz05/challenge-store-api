@@ -26,7 +26,7 @@ Una API de comercio electrónico construida con NestJS que permite gestionar pro
 
 1. Clonar el repositorio:
    ```bash
-   git clone <url-del-repositorio>
+   git clone https://github.com/oscarruiz05/challenge-store-api.git
    cd challenge-store-api
    ```
 
@@ -69,6 +69,9 @@ Una API de comercio electrónico construida con NestJS que permite gestionar pro
    ```
 
 ## Modelo Entidad-Relación
+
+![image](https://github.com/user-attachments/assets/f326a253-2842-4d04-a7f6-5087fe7e025a)
+
 
 ## Cobertura de pruebas
 
